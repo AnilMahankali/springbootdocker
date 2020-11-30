@@ -16,7 +16,7 @@ public static void exceptionHandler(String url, RestClientException re ) {
 		
 		if (re instanceof HttpServerErrorException &&
 			HttpStatus.GATEWAY_TIMEOUT.value() == ((HttpServerErrorException) re).getRawStatusCode()) {
-			throw new TimeOutException("Time out trying to call process api: " + url, re.getMessage());
+			throw new TimeOutException("Time out trying to call api: " + url, re.getMessage());
         }
 		
 		if (re instanceof HttpClientErrorException &&
@@ -24,6 +24,6 @@ public static void exceptionHandler(String url, RestClientException re ) {
 				throw new UnauthorizedException("Failed to call url: " + url, re.getMessage());
 	        }
 		
-		throw new ProcessApiInvokeException("Error by calling process api: " + url, re.getMessage());
+		throw new ProcessApiInvokeException("Error by calling api: " + url, re.getMessage());
 	}
 }

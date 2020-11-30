@@ -1,4 +1,4 @@
-package springbootdocker;
+package com.demo.controller;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -13,13 +13,12 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.demo.controller.Application;
-import com.demo.controller.NoteRecordController;
-import com.demo.controller.PTABBusinessUtils;
-import com.demo.controller.PcdngContentExtractRepository;
-import com.demo.controller.ProceedingContentExtract;
-import com.demo.controller.ProceedingContentExtractService;
-import com.demo.controller.StndDocumentExtrctPurpsRepository;
+import com.demo.Application;
+import com.demo.data.PolicyData;
+import com.demo.repo.PcdngContentExtractRepository;
+import com.demo.repo.StndDocumentExtrctPurpsRepository;
+import com.demo.service.ProceedingContentExtractService;
+import com.demo.util.PTABBusinessUtils;
 
 import junit.framework.Assert;
 
@@ -50,7 +49,7 @@ public class NoteRecordControllerTest {
 	    final String baseUrl = "http://localhost:"+randomServerPort+"/noteRecord/save";
 	    URI uri = new URI(baseUrl);
 	     
-	    ProceedingContentExtract employee = new ProceedingContentExtract();
+	    PolicyData employee = new PolicyData();
 	 
 	    ResponseEntity<Object> result = template.postForEntity(uri, employee, Object.class);
 	     

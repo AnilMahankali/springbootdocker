@@ -1,7 +1,10 @@
-package springbootdocker;
+package com.demo.service;
 
-import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
+
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -11,17 +14,10 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import static org.mockito.Mockito.*;
-
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-
-import com.demo.controller.PcdngContentExtractEntity;
-import com.demo.controller.PcdngContentExtractRepository;
-import com.demo.controller.ProceedingContentExtract;
-import com.demo.controller.ProceedingContentExtractService;
-import com.demo.controller.StndDocumentExtrctPurpsRepository;
+import com.demo.data.PcdngContentExtractEntity;
+import com.demo.repo.PcdngContentExtractRepository;
+import com.demo.repo.StndDocumentExtrctPurpsRepository;
+import com.demo.service.ProceedingContentExtractService;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ProceedingContentExtractServiceTest {

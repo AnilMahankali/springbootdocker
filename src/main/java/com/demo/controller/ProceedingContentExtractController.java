@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.demo.data.PolicyData;
+import com.demo.service.ProceedingContentExtractService;
+
 @RestController
 @RequestMapping(value = "/pcdng-content-extract" )
 public class ProceedingContentExtractController {
@@ -24,7 +27,7 @@ public class ProceedingContentExtractController {
 //	}
 
 	@GetMapping
-	public List<ProceedingContentExtract> getProceedingContentExtract(@Valid final String proceedingCoreId,
+	public List<PolicyData> getProceedingContentExtract(@Valid final String proceedingCoreId,
 			@Valid final String proceedingSupplementaryId){
 		
 		return proceedingContextExtractService.getProceedingContentExtract(proceedingCoreId, proceedingSupplementaryId);
@@ -33,7 +36,7 @@ public class ProceedingContentExtractController {
 	
 	@PostMapping
 	public void createProceedingContentExtract(
-			@Valid @RequestBody final ProceedingContentExtract proceedingContentExtract) {
+			@Valid @RequestBody final PolicyData proceedingContentExtract) {
 		//proceedingContentExtractService.cre
 		
 	}

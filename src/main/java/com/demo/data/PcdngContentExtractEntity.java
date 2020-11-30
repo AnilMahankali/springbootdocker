@@ -1,4 +1,4 @@
-package com.demo.controller;
+package com.demo.data;
 
 import com.fasterxml.jackson.core.JsonParser;
 

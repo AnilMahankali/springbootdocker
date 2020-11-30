@@ -8,10 +8,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.demo.data.PolicyData;
+import com.demo.service.NoteRecordService;
 import com.demo.util.CommonResponseModel;
 
 @RestController
@@ -19,15 +22,15 @@ import com.demo.util.CommonResponseModel;
 public class NoteRecordController {
 
 	@Autowired
-	NoteRecordService<ProceedingContentExtract> noteRecordService;
+	public NoteRecordService<PolicyData> noteRecordService;
 	
 	@RequestMapping(value = "save", method = RequestMethod.POST)
 	@ResponseBody
 	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<Object> save(
-			@Valid @RequestBody final ProceedingContentExtract proceedingContentExtract) {
+			@Valid @RequestBody final PolicyData policyData) {
 		CommonResponseModel response = 
-				noteRecordService.doPost(proceedingContentExtract);
+				noteRecordService.doPost(policyData);
 		return ResponseEntity.status(HttpStatus.OK).body(response);
 		
 	}
@@ -36,9 +39,20 @@ public class NoteRecordController {
 	@ResponseBody
 	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<Object> update(
-			@Valid @RequestBody final ProceedingContentExtract proceedingContentExtract) {
+			@Valid @RequestBody final PolicyData proceedingContentExtract) {
 		CommonResponseModel response = 
 				noteRecordService.doPut(proceedingContentExtract);
+		return ResponseEntity.status(HttpStatus.OK).body(response);
+		
+	}
+	
+	@RequestMapping(value = "get", method = RequestMethod.GET)
+	@ResponseBody
+	@ResponseStatus(HttpStatus.OK)
+	public ResponseEntity<Object> get(
+			@RequestParam(value = "id", required = false) String id) {
+		CommonResponseModel response = 
+				noteRecordService.doGet(id);
 		return ResponseEntity.status(HttpStatus.OK).body(response);
 		
 	}
