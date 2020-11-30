@@ -16,6 +16,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
@@ -49,6 +50,30 @@ public class NoteRecordServiceTest {
 		if (rs != null) {
 			assertTrue(rs.getSuccess());
 			assertEquals("Data returned successfully!", rs.getMessage());
+		} else {
+			assertFalse("No Response", (rs != null));
+		}
+		
+	}
+	
+	@Test
+	public void test_postData() {
+		
+		ResponseEntity<Object> mocked = this.setResponseEntity();
+		CommonResponseModel mockedResponseModel = new CommonResponseModel();
+		mockedResponseModel.setResponseData(mocked);
+		mockedResponseModel.setResponseData(this.setResponse());
+		Mockito.when(restTemplateMock.postForEntity(Mockito.anyString(), Mockito.anyObject(), 
+				any(Class.class), Mockito.anyString())).thenReturn(mocked);
+		
+//		ResponseEntity<T> responseEntity = 
+//				(ResponseEntity<T>) restTemplate.postForEntity(url, requestEntity, Object.class, type);
+		
+		PolicyData proceedingContentExtract = new PolicyData();
+		CommonResponseModel rs = noteRecordService.doPost(proceedingContentExtract);
+		if (rs != null) {
+			assertTrue(rs.getSuccess());
+			assertEquals("Saving data successfully!", rs.getMessage());
 		} else {
 			assertFalse("No Response", (rs != null));
 		}
