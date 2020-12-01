@@ -17,7 +17,6 @@ import org.mockito.junit.MockitoJUnitRunner;
 import com.demo.data.PcdngContentExtractEntity;
 import com.demo.repo.PcdngContentExtractRepository;
 import com.demo.repo.StndDocumentExtrctPurpsRepository;
-import com.demo.service.ProceedingContentExtractService;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ProceedingContentExtractServiceTest {

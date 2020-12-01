@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.demo.Application;
+import com.demo.controller.NoteRecordController;
 import com.demo.data.PolicyData;
 import com.demo.repo.PcdngContentExtractRepository;
 import com.demo.repo.StndDocumentExtrctPurpsRepository;

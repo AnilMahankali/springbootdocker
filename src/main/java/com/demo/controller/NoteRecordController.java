@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.demo.data.PolicyData;
+import com.demo.data.PolicyDTO;
 import com.demo.service.NoteRecordService;
 import com.demo.util.CommonResponseModel;
 
@@ -22,13 +22,13 @@ import com.demo.util.CommonResponseModel;
 public class NoteRecordController {
 
 	@Autowired
-	public NoteRecordService<PolicyData> noteRecordService;
+	public NoteRecordService<PolicyDTO> noteRecordService;
 	
 	@RequestMapping(value = "save", method = RequestMethod.POST)
 	@ResponseBody
 	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<Object> save(
-			@Valid @RequestBody final PolicyData policyData) {
+			@Valid @RequestBody final PolicyDTO policyData) {
 		CommonResponseModel response = 
 				noteRecordService.doPost(policyData);
 		return ResponseEntity.status(HttpStatus.OK).body(response);
@@ -39,7 +39,7 @@ public class NoteRecordController {
 	@ResponseBody
 	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<Object> update(
-			@Valid @RequestBody final PolicyData proceedingContentExtract) {
+			@Valid @RequestBody final PolicyDTO proceedingContentExtract) {
 		CommonResponseModel response = 
 				noteRecordService.doPut(proceedingContentExtract);
 		return ResponseEntity.status(HttpStatus.OK).body(response);

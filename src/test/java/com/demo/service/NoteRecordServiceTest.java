@@ -16,11 +16,11 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
+import com.demo.data.PolicyDTO;
 import com.demo.data.PolicyData;
 import com.demo.util.CommonResponseModel;
 
@@ -91,12 +91,15 @@ public class NoteRecordServiceTest {
 			return entity;	
 		}
 		
-		public List<PolicyData> setResponse(){
-			List<PolicyData> list = new ArrayList<>();
-			PolicyData rs = new PolicyData();
-			rs.setProceedingCoreId("1");
-			rs.setDescriptionTx("descriptionTx");
-			list.add(rs);
+		public List<PolicyDTO> setResponse(){
+			List<PolicyDTO> list = new ArrayList<>();
+			PolicyDTO data = new PolicyDTO();
+				PolicyData rs = new PolicyData();
+				rs.setProceedingCoreId("1");
+				rs.setDescriptionTx("descriptionTx");
+			data.setRequestData(rs);
+			
+			list.add(data);
 			return list;
 		}	
 }

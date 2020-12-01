@@ -15,12 +15,13 @@ import com.demo.util.CommonResponseModel;
 import com.demo.util.Utils;
 import lombok.extern.slf4j.Slf4j;
 
+@Component
 @Service
 @Slf4j
 public class NoteRecordServiceImpl<T> implements NoteRecordService<T> {
 	
 	@Autowired
-	RestTemplate restTemplate;
+	public RestTemplate restTemplate;
 	
 
 	public CommonResponseModel service(T proceedingContentExtract, String type) {
