@@ -2,15 +2,15 @@ package com.demo.service;
 
 import org.springframework.stereotype.Service;
 
-import com.demo.util.CommonResponseModel;
+import com.demo.util.ResponseModel;
 
 @Service
 public interface NoteRecordService<T> {
 
-	public CommonResponseModel doGet(String id);
+	public ResponseModel doGet(String id);
 	
-	public CommonResponseModel doPost(T proceedingContentExtract);
+	public ResponseModel doPost(T proceedingContentExtract);
 	
-	public CommonResponseModel doPut(T proceedingContentExtract);
+	public ResponseModel doPut(T proceedingContentExtract);
 
 }

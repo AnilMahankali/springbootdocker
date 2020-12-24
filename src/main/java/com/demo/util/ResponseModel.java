@@ -1,14 +1,14 @@
 package com.demo.util;
 
-public class CommonResponseModel {
+public class ResponseModel {
 	public Boolean success;
 	private String message;
 	private String totalCount; 
 	
-	public CommonResponseModel() {
+	public ResponseModel() {
 	}
 	
-	public CommonResponseModel(Boolean success, String message, String totalCount) {
+	public ResponseModel(Boolean success, String message, String totalCount) {
 		this.success = success;
 		this.message = message;
 		this.totalCount = totalCount;

@@ -13,16 +13,20 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Matchers;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import com.demo.data.PolicyDTO;
 import com.demo.data.PolicyData;
-import com.demo.util.CommonResponseModel;
+import com.demo.util.ResponseModel;
 
 @RunWith(MockitoJUnitRunner.class)
 public class NoteRecordServiceTest {
@@ -41,12 +45,18 @@ public class NoteRecordServiceTest {
 	public void test_getData() {
 		
 		ResponseEntity<Object> mocked = this.setResponseEntity();
-		CommonResponseModel mockedResponseModel = new CommonResponseModel();
+		ResponseModel mockedResponseModel = new ResponseModel();
 		mockedResponseModel.setResponseData(mocked);
 		mockedResponseModel.setResponseData(this.setResponse());
-		Mockito.when(restTemplateMock.getForEntity(Mockito.anyString(), any(Class.class))).thenReturn(mocked);
+		//Mockito.when(restTemplateMock.getForEntity(Mockito.anyString(), any())).thenReturn(mocked);
+		Mockito.when(restTemplateMock.exchange(
+				Mockito.anyString(),
+	            Matchers.eq(HttpMethod.GET),
+	            Matchers.<HttpEntity<Object>>any(),
+	            any(Class.class)
+				)).thenReturn(mocked);
         String id = "1";
-		CommonResponseModel rs = noteRecordService.doGet(id);
+		ResponseModel rs = noteRecordService.doGet(id);
 		if (rs != null) {
 			assertTrue(rs.getSuccess());
 			assertEquals("Data returned successfully!", rs.getMessage());
@@ -60,17 +70,47 @@ public class NoteRecordServiceTest {
 	public void test_postData() {
 		
 		ResponseEntity<Object> mocked = this.setResponseEntity();
-		CommonResponseModel mockedResponseModel = new CommonResponseModel();
+		ResponseModel mockedResponseModel = new ResponseModel();
 		mockedResponseModel.setResponseData(mocked);
 		mockedResponseModel.setResponseData(this.setResponse());
+		
 		Mockito.when(restTemplateMock.postForEntity(Mockito.anyString(), Mockito.anyObject(), 
 				any(Class.class), Mockito.anyString())).thenReturn(mocked);
 		
-//		ResponseEntity<T> responseEntity = 
-//				(ResponseEntity<T>) restTemplate.postForEntity(url, requestEntity, Object.class, type);
+		Mockito.when(restTemplateMock.exchange(
+				Mockito.anyString(),
+	            Matchers.eq(HttpMethod.POST),
+	            Matchers.<HttpEntity<Object>>any(),
+	            any(Class.class)
+				)).thenReturn(mocked);
 		
 		PolicyData proceedingContentExtract = new PolicyData();
-		CommonResponseModel rs = noteRecordService.doPost(proceedingContentExtract);
+		ResponseModel rs = noteRecordService.doPost(proceedingContentExtract);
+		if (rs != null) {
+			assertTrue(rs.getSuccess());
+			assertEquals("Saving data successfully!", rs.getMessage());
+		} else {
+			assertFalse("No Response", (rs != null));
+		}
+		
+	}
+	
+	@Test
+	public void test_putData() {
+		
+		ResponseEntity<Object> mocked = this.setResponseEntity();
+		ResponseModel mockedResponseModel = new ResponseModel();
+		mockedResponseModel.setResponseData(mocked);
+		mockedResponseModel.setResponseData(this.setResponse());
+		Mockito.when(restTemplateMock.exchange(
+				Mockito.anyString(),
+	            Matchers.eq(HttpMethod.POST),
+	            Matchers.<HttpEntity<Object>>any(),
+	            any(Class.class)
+				)).thenReturn(mocked);
+		
+		PolicyData proceedingContentExtract = new PolicyData();
+		ResponseModel rs = noteRecordService.doPut(proceedingContentExtract);
 		if (rs != null) {
 			assertTrue(rs.getSuccess());
 			assertEquals("Saving data successfully!", rs.getMessage());

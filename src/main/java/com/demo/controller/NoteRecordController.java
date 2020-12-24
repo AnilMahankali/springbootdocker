@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.demo.data.PolicyDTO;
 import com.demo.service.NoteRecordService;
-import com.demo.util.CommonResponseModel;
+import com.demo.util.ResponseModel;
 
 @RestController
 @RequestMapping(value = "/noteRecord" )
@@ -29,7 +29,7 @@ public class NoteRecordController {
 	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<Object> save(
 			@Valid @RequestBody final PolicyDTO policyData) {
-		CommonResponseModel response = 
+		ResponseModel response = 
 				noteRecordService.doPost(policyData);
 		return ResponseEntity.status(HttpStatus.OK).body(response);
 		
@@ -40,7 +40,7 @@ public class NoteRecordController {
 	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<Object> update(
 			@Valid @RequestBody final PolicyDTO proceedingContentExtract) {
-		CommonResponseModel response = 
+		ResponseModel response = 
 				noteRecordService.doPut(proceedingContentExtract);
 		return ResponseEntity.status(HttpStatus.OK).body(response);
 		
@@ -51,7 +51,7 @@ public class NoteRecordController {
 	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<Object> get(
 			@RequestParam(value = "id", required = false) String id) {
-		CommonResponseModel response = 
+		ResponseModel response = 
 				noteRecordService.doGet(id);
 		return ResponseEntity.status(HttpStatus.OK).body(response);
 		
